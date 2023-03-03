@@ -10,6 +10,10 @@ loginform.onsubmit = async function (evt) {
     let res = await fetch(`http://localhost:3000/users?username=${username.value}&password=${password.value}`).then(res=>res.json())
 
     if (res.length > 0) {
+        localStorage.setItem("token",JSON.stringify({
+            ...res[0],
+            password:"*******"
+        }))
         location.href = "/admin/views/home/index.html"
     } else {
         console.log("failed")

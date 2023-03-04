@@ -7,12 +7,12 @@ loginform.onsubmit = async function (evt) {
 
     // json-server: get=search, post=add, put=update, delete=delete
 
-    let res = await fetch(`http://localhost:3000/users?username=${username.value}&password=${password.value}`).then(res=>res.json())
+    let res = await fetch(`http://localhost:3000/users?username=${username.value}&password=${password.value}`).then(res => res.json())
 
     if (res.length > 0) {
-        localStorage.setItem("token",JSON.stringify({
+        localStorage.setItem("token", JSON.stringify({
             ...res[0],
-            password:"*******"
+            password: "*******"
         }))
         location.href = "/admin/views/home/index.html"
     } else {

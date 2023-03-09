@@ -5,3 +5,13 @@
     box-shadow: 0 0 5px rgba($color: #000000, $alpha: 0.2);
 }
 
+.userprofile{
+    display: flex;
+    >div{
+        margin-left: 50px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+}
+

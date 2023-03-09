@@ -36,7 +36,7 @@ async function load(id) {
     }
 }
 
-export { load }
+export { load, isLogin }
 
 
 

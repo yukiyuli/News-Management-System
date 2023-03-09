@@ -23,3 +23,7 @@ body,
   flex: 1;
   padding-top: 50px;
 }
+
+.main .box .content {
+  padding: 20px;
+}

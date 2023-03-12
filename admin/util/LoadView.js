@@ -16,6 +16,15 @@ function renderTopbar(user) {
     }
 }
 
+function renderSidemenu(user, id) {
+    document.querySelector("#" + id).style.color = "#0a58ca";
+
+    // 不是管理员看不到用户信息管理列表
+    if (user.role !== "admin") {
+        document.querySelector(".user-manage-item").remove()
+    }
+}
+
 async function load(id) {
     let user = isLogin()
     if (user) {
@@ -29,8 +38,10 @@ async function load(id) {
 
         document.querySelector(".sidemenu").innerHTML = sidemenuText;
 
-        document.querySelector("#" + id).style.color = "#0a58ca";
+        renderSidemenu(JSON.parse(user), id)
+
     }
+
     else {
         location.href = "/admin/views/login/index.html"
     }

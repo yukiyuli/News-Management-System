@@ -5,6 +5,7 @@ import { load } from "/admin/util/LoadView.js"
 load("sidemenu-userList")
 
 var editModal = new bootstrap.Modal(document.getElementById('editModal'))
+var delModal = new bootstrap.Modal(document.getElementById('delModal'))
 
 let list = []
 
@@ -23,7 +24,7 @@ async function render() {
                     <img src="${item.photo}" style="width:50px;border-radius:50%"/>
                 </td>
                 <td>
-                // data- 自定义属性
+              
                 <button type="button" class="btn btn-primary btn-sm btn-edit" ${item.default ? "disabled" : ""} data-myid="${item.id}" >Edit</button>
                 <button type="button" class="btn btn-danger btn-sm btn-del" ${item.default ? "disabled" : ""} data-myid="${item.id}">Delete</button>
 
@@ -31,6 +32,8 @@ async function render() {
             </tr>
     `).join("")
 }
+
+// data- 自定义属性
 
 // user List 读取数据
 listbody.onclick = function (evt) {
@@ -51,6 +54,8 @@ listbody.onclick = function (evt) {
         photodata = photo
 
     } else if (evt.target.className.includes("btn-del")) {
+        delModal.toggle()
+        updateId = evt.target.dataset.myid
 
     }
 
@@ -71,7 +76,7 @@ editConfirm.onclick = async function () {
         })
     }).then(res => res.json())
 
-    
+
     editModal.toggle()
 
     render()
@@ -81,8 +86,17 @@ photofile.onchange = function (evt) {
     let reader = new FileReader()
     reader.readAsDataURL(evt.target.files[0])
     reader.onload = function (e) {
-        photo = e.target.result
+        photodata = e.target.result
     }
+}
+
+// delete
+delConfirm.onclick =async function(){
+    await fetch(`http://localhost:3000/users/${updateId}`,{
+        method:"delete"
+    }).then(res=>res.json())
+    delModal.toggle()
+    render()
 }
 
 render()

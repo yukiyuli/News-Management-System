@@ -39,7 +39,7 @@ listbody.onclick = function (evt) {
         renderPreviewModal(obj)
     }
     else if (evt.target.className.includes("btn-edit")) {
-
+        location.href="/admin/views/news-manage/EditNews/index.html?id="+evt.target.dataset.myid //带上id
     }
     else if (evt.target.className.includes("btn-del")) {
 

@@ -50,7 +50,7 @@ coverphoto.onchange = function (evt) {
 
 addNewsForm.onsubmit =async  function(evt){
     evt.preventDefault()
-    await fetch(`http://localhost:3000/news${editId}`,{
+    await fetch(`http://localhost:3000/news${editId}`,{ 
         headers:{
             "content-type":"application/json"
         },

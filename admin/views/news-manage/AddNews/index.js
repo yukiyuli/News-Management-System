@@ -15,7 +15,7 @@ const editorConfig = {
         const html = editor.getHtml()
         // console.log('editor content', html)
         // You can sync HTML to <textarea>
-
+        // 改变都收集到content里
         content = html
     }
 }

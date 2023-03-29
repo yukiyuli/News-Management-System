@@ -18,7 +18,7 @@ async function render() {
             ${categoryList[item.category]}
         </td>
         <td>
-    
+        <button type="button" class="btn btn-success btn-sm btn-edit" data-myid="${item.id}" >Preview</button>
         <button type="button" class="btn btn-primary btn-sm btn-edit" data-myid="${item.id}" >Edit</button>
         <button type="button" class="btn btn-danger btn-sm btn-del" data-myid="${item.id}">Delete</button>
 

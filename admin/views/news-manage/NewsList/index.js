@@ -6,6 +6,8 @@ load("sidemenu-newsList")
 
 let list = []
 
+var previewModal = new bootstrap.Modal(document.getElementById('previewModal'))
+
 let categoryList = ["Lastest news", "Typical Case", "Announcement"]
 
 async function render() {
@@ -18,7 +20,7 @@ async function render() {
             ${categoryList[item.category]}
         </td>
         <td>
-        <button type="button" class="btn btn-success btn-sm btn-edit" data-myid="${item.id}" >Preview</button>
+        <button type="button" class="btn btn-success btn-sm btn-preview" data-myid="${item.id}" >Preview</button>
         <button type="button" class="btn btn-primary btn-sm btn-edit" data-myid="${item.id}" >Edit</button>
         <button type="button" class="btn btn-danger btn-sm btn-del" data-myid="${item.id}">Delete</button>
 
@@ -27,5 +29,27 @@ async function render() {
        
     `).join("")
 }
+
+// 事件委托
+listbody.onclick = function (evt) {
+    if (evt.target.className.includes("btn-preview")) {
+        previewModal.toggle()
+
+        let obj = list.filter(item => item.id == evt.target.dataset.myid)[0]
+        renderPreviewModal(obj)
+    }
+    else if (evt.target.className.includes("btn-edit")) {
+
+    }
+    else if (evt.target.className.includes("btn-del")) {
+
+    }
+}
+
+function renderPreviewModal(obj) {
+    previewModalTitle.innerHTML = obj.title
+    previewModalContent.innerHTML = obj.content
+}
+
 
 render()

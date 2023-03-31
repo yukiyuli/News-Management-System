@@ -6,7 +6,10 @@ load("sidemenu-newsList")
 
 let list = []
 
+let editId = 0
+
 var previewModal = new bootstrap.Modal(document.getElementById('previewModal'))
+var delModal = new bootstrap.Modal(document.getElementById('delModal'))
 
 let categoryList = ["Lastest news", "Typical Case", "Announcement"]
 
@@ -42,7 +45,10 @@ listbody.onclick = function (evt) {
         location.href = "/admin/views/news-manage/EditNews/index.html?id=" + evt.target.dataset.myid //带上id才知道修改的是哪条新闻
     }
     else if (evt.target.className.includes("btn-del")) {
+        editId = evt.target.dataset.myid
 
+        // show edit modal
+        delModal.toggle()
     }
 }
 
@@ -55,9 +61,17 @@ function renderPreviewModal(obj) {
         img.setAttribute('class', 'img-fluid')
         previewModalPhoto.innerHTML = ''
         previewModalPhoto.appendChild(img)
-      } else {
+    } else {
         previewModalPhoto.innerHTML = ''
-      }
+    }
+}
+
+delConfirm.onclick = async function () {
+    await fetch(`http://localhost:3000/news/${editId}`, {
+        method: "delete"
+    })
+    delModal.toggle()
+    render()
 }
 
 render()

@@ -39,7 +39,7 @@ listbody.onclick = function (evt) {
         renderPreviewModal(obj)
     }
     else if (evt.target.className.includes("btn-edit")) {
-        location.href="/admin/views/news-manage/EditNews/index.html?id="+evt.target.dataset.myid //带上id才知道修改的是哪条新闻
+        location.href = "/admin/views/news-manage/EditNews/index.html?id=" + evt.target.dataset.myid //带上id才知道修改的是哪条新闻
     }
     else if (evt.target.className.includes("btn-del")) {
 
@@ -49,7 +49,15 @@ listbody.onclick = function (evt) {
 function renderPreviewModal(obj) {
     previewModalTitle.innerHTML = obj.title
     previewModalContent.innerHTML = obj.content
+    if (obj.cover) {
+        const img = document.createElement('img')
+        img.setAttribute('src', obj.cover)
+        img.setAttribute('class', 'img-fluid')
+        previewModalPhoto.innerHTML = ''
+        previewModalPhoto.appendChild(img)
+      } else {
+        previewModalPhoto.innerHTML = ''
+      }
 }
-
 
 render()

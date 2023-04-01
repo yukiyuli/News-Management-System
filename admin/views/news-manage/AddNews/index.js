@@ -56,7 +56,7 @@ addNewsForm.onsubmit =async  function(evt){
             title:title.value,
             content,
             category:category.value,
-            cover:coverphoto,
+            cover,
             //作者
             author:JSON.parse(isLogin()).username
         })

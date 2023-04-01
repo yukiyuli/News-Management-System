@@ -18,30 +18,45 @@ document.querySelector(".userprofile").innerHTML = `
 
 // pre: keep the original text style
 
-  // Initialize the echarts instance based on the prepared dom
-  var myChart = echarts.init(document.getElementById('main'));
+// Initialize the echarts instance based on the prepared dom
+var myChart = echarts.init(document.getElementById('main'));
 
-  // Specify the configuration items and data for the chart
-  var option = {
+// Specify the configuration items and data for the chart
+var option = option = {
     title: {
-      text: 'ECharts Getting Started Example'
+        text: 'News posted by current user',
+        subtext: 'Proportion of different categories',
+        left: 'center'
     },
-    tooltip: {},
+    tooltip: {
+        trigger: 'item'
+    },
     legend: {
-      data: ['sales']
+        orient: 'vertical',
+        left: 'left'
     },
-    xAxis: {
-      data: ['Shirts', 'Cardigans', 'Chiffons', 'Pants', 'Heels', 'Socks']
-    },
-    yAxis: {},
     series: [
-      {
-        name: 'sales',
-        type: 'bar',
-        data: [5, 20, 36, 10, 10, 20]
-      }
+        {
+            name: 'Access From',
+            type: 'pie',
+            radius: '50%',
+            data: [
+                { value: 1048, name: 'Search Engine' },
+                { value: 735, name: 'Direct' },
+                { value: 580, name: 'Email' },
+                { value: 484, name: 'Union Ads' },
+                { value: 300, name: 'Video Ads' }
+            ],
+            emphasis: {
+                itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            }
+        }
     ]
-  };
+};
 
-  // Display the chart using the configuration items and data just specified.
-  myChart.setOption(option);
+// Display the chart using the configuration items and data just specified.
+myChart.setOption(option);

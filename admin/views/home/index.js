@@ -60,3 +60,7 @@ var option = option = {
 
 // Display the chart using the configuration items and data just specified.
 myChart.setOption(option);
+
+async function analyist(){
+    let res = await fetch("http://localhost:3000/news?author="+user.username).then(res=>res.json())
+}

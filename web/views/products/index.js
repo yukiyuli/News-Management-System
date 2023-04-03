@@ -13,10 +13,10 @@ async function render() {
     indicatorHTML.innerHTML = list.map((item, index) => `
         <button type="button" 
         data-bs-target="#carouselExampleCaptions" 
-        data-bs-slide-to="{index}" 
-        class="active" 
+        data-bs-slide-to="${index}" 
+        class="${index === 0 ? "active" : ""}" 
         aria-current="true" 
-        aria-label="$(item.title}">
+        aria-label="${item.title}">
         </button>
     `).join("")
 

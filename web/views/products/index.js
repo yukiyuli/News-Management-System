@@ -2,6 +2,6 @@
 
 import { load } from "/web/util/LoadView.js"
 
-load( )
+load( "topbar-products" )
 
 

@@ -1,7 +1,7 @@
 // insert public js module
 
-import { load, isLogin } from "/admin/util/LoadView.js"
+import { load } from "/web/util/LoadView.js"
 
-load("sidemenu-home")
+load( )
 
 

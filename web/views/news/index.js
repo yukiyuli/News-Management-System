@@ -36,7 +36,7 @@ async function renderList() {
     list.reverse()
     let cardcontainer=document.querySelector(".card-container")
     cardcontainer.innerHTML=list.slice(0,4).map(item=>`
-    <div class="card">
+    <div class="card" data-id="${item.id}">
         <div style="background-image:url(${item.cover});" class="imgcover"></div>
         <div class="card-body">
         <h5 class="card-title" style="font-size:16px">${item.title}</h5>
@@ -45,6 +45,10 @@ async function renderList() {
         </div>
     </div>
     `).join("")
+
+    for(let item of document.querySelectorAll(".card")){
+
+    }
 }
 
 

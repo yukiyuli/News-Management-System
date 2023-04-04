@@ -34,22 +34,24 @@ function render() {
 async function renderList() {
     list = await fetch("http://localhost:3000/news").then(res => res.json())
     list.reverse()
-    let cardcontainer=document.querySelector(".card-container")
-    cardcontainer.innerHTML=list.slice(0,4).map(item=>`
+    let cardcontainer = document.querySelector(".card-container")
+    cardcontainer.innerHTML = list.slice(0, 4).map(item => `
     <div class="card" data-id="${item.id}">
         <div style="background-image:url(${item.cover});" class="imgcover"></div>
         <div class="card-body">
-        <h5 class="card-title" style="font-size:16px">${item.title}</h5>
-        <p class="card-text" style="font-size:14px;color:gray;">Author: ${item.author}</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
+            <h5 class="card-title" style="font-size:16px">${item.title}</h5>
+            <p class="card-text" style="font-size:14px;color:gray;">Author: ${item.author}</p>
         </div>
     </div>
     `).join("")
 
-    for(let item of document.querySelectorAll(".card")){
-
+    for (let item of document.querySelectorAll(".card")) {
+        item.onclick = function () {
+            location.href = `/web/views/detail/index.html?id=${item.dataset.id}`
+        }
     }
 }
+
 
 
 function renderTab() {

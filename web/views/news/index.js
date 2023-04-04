@@ -14,7 +14,12 @@ search.oninput =async function(){
      let res =await fetch("http://localhost:3000/news?title_like="+search.value).then(res=>res.json())
     // console.log(res)
     document.querySelector(".list-group").innerHTML = res.map(item=>`
-    <li class="list-group-item">${item.title}</a></li>
+    <li class="list-group-item"><a href="/web/views/news/index.html?id=${item.id}">${item.title}</a></li>
     `).join("")
 }
 
+search.onblur = function(){
+    setTimeout(()=>{
+        document.querySelector(".list-group").style.display = "none"
+    },300)
+}

@@ -4,22 +4,52 @@ import { load } from "/web/util/LoadView.js"
 
 load("topbar-news")
 
-search.oninput =async function(){
+let list = []
 
-    if(!search.value ) {
+search.oninput = async function () {
+
+    if (!search.value) {
         document.querySelector(".list-group").style.display = "none"   // 隐藏搜索结果框
         return
-    } 
+    }
     document.querySelector(".list-group").style.display = "block"   // 显示搜索结果框
-     let res =await fetch("http://localhost:3000/news?title_like="+search.value).then(res=>res.json())
+    let res = await fetch("http://localhost:3000/news?title_like=" + search.value).then(res => res.json())
     // console.log(res)
-    document.querySelector(".list-group").innerHTML = res.map(item=>`
+    document.querySelector(".list-group").innerHTML = res.map(item => `
     <li class="list-group-item"><a href="/web/views/news/index.html?id=${item.id}">${item.title}</a></li>
     `).join("")
 }
 
-search.onblur = function(){
-    setTimeout(()=>{
+search.onblur = function () {
+    setTimeout(() => {
         document.querySelector(".list-group").style.display = "none"
-    },300)
+    }, 300)
 }
+
+function render() {
+    renderList()
+    renderTab()
+}
+
+async function renderList() {
+    list = await fetch("http://localhost:3000/news").then(res => res.json())
+    list.reverse()
+    let cardcontainer=document.querySelector(".card-container")
+    cardcontainer.innerHTML=list.slice(0,4).map(item=>`
+    <div class="card">
+        <div style="background-image:url(${item.cover});" class="imgcover"></div>
+        <div class="card-body">
+        <h5 class="card-title" style="font-size:16px">${item.title}</h5>
+        <p class="card-text" style="font-size:14px;color:gray;">Author: ${item.author}</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+    </div>
+    `).join("")
+}
+
+
+function renderTab() {
+
+}
+
+render()

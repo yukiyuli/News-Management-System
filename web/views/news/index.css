@@ -62,3 +62,7 @@ body,
   background-size: cover;
   background-position: center;
 }
+
+.card-container .card:hover {
+  box-shadow: 0 0 10px black;
+}
